@@ -50,6 +50,10 @@ public class Inventory {
 
     @Column(nullable=false,
             columnDefinition = "INTEGER DEFAULT 0")
+    private Integer reservedCount;
+
+    @Column(nullable=false,
+            columnDefinition = "INTEGER DEFAULT 0")
     private Integer totalCount;
 
     @Column(nullable = false,

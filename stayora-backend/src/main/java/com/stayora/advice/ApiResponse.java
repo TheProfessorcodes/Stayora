@@ -1,26 +1,23 @@
 package com.stayora.advice;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
-public class ApiResponse<T>{
+@Getter
+@NoArgsConstructor
+public class ApiResponse<T> {
 
-    private LocalDateTime timestamp;
+    private LocalDateTime timestamp = LocalDateTime.now();
     private T data;
     private ApiError apiError;
 
-    public ApiResponse() {
-        this.timestamp = LocalDateTime.now();
-    }
-
-    public ApiResponse(T data){
-
-        this();
+    public ApiResponse(T data) {
         this.data = data;
-
     }
 
-    public ApiResponse(ApiError apiError){
-        this();
+    public ApiResponse(ApiError apiError) {
         this.apiError = apiError;
     }
 }
