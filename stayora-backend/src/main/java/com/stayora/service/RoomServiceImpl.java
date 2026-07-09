@@ -3,12 +3,15 @@ package com.stayora.service;
 import com.stayora.dto.RoomDto;
 import com.stayora.entity.Hotel;
 import com.stayora.entity.Room;
+import com.stayora.entity.User;
 import com.stayora.exception.ResourceNotFoundException;
+import com.stayora.exception.UnAuthorisedException;
 import com.stayora.repository.HotelRepository;
 import com.stayora.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +34,10 @@ public class RoomServiceImpl implements RoomService {
         Hotel hotel=hotelRepository
                 .findById(hotelId)
                 .orElseThrow(()->new ResourceNotFoundException("Hotel not found"));
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(!user.equals(hotel.getOwner())){
+            throw new UnAuthorisedException("This user does not own this hotel");
+        }
         Room room = modelMapper.map(roomDto, Room.class);
         room.setHotel(hotel);
         room=roomRepository.save(room);
@@ -51,6 +58,10 @@ public class RoomServiceImpl implements RoomService {
         Hotel hotel=hotelRepository
                 .findById(hotelId)
                 .orElseThrow(()->new ResourceNotFoundException("Hotel not found"));
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(!user.equals(hotel.getOwner())){
+            throw new UnAuthorisedException("This user does not own this hotel");
+        }
         return hotel.getRooms()
                 .stream()
                 .map((element) -> modelMapper.map(element,RoomDto.class))
@@ -73,6 +84,11 @@ public class RoomServiceImpl implements RoomService {
         Room room=roomRepository
                 .findById(roomId)
                 .orElseThrow(()->new ResourceNotFoundException("Room not found"));
+
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(!user.equals(room.getHotel().getOwner())){
+            throw new UnAuthorisedException("This user does not own this hotel");
+        }
 
         //TODO:DELETE INVENTORY FUTURE
         inventoryService.deleteAllInventories(room);

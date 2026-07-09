@@ -6,11 +6,13 @@ import com.stayora.dto.GuestDto;
 import com.stayora.entity.*;
 import com.stayora.entity.enums.BookingStatus;
 import com.stayora.exception.ResourceNotFoundException;
+import com.stayora.exception.UnAuthorisedException;
 import com.stayora.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -89,7 +91,10 @@ public class BookingServiceImpl implements BookingService {
     public BookingDto addGuests(Long bookingId, List<GuestDto> guestDtoList) {
         log.info("Adding guests on request");
         Booking booking =bookingRepository.findById(bookingId).orElseThrow(()-> new ResourceNotFoundException("Booking Not Found"));
-
+        User user=getCurrentUser();
+        if(!user.equals(booking.getUser())){
+            throw new UnAuthorisedException("Booking does not belong");
+        }
         if(hasBookingExpired(booking)){
             throw new IllegalStateException("Booking expired");
 
@@ -116,8 +121,6 @@ public class BookingServiceImpl implements BookingService {
     }
 
     public User getCurrentUser(){
-        User user=new User();
-        user.setId(1L);
-        return user;
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 }
