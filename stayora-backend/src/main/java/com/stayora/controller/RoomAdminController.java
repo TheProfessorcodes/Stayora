@@ -24,8 +24,8 @@ public class RoomAdminController {
 
     @GetMapping
     public ResponseEntity<List<RoomDto>> getAllRooms(@PathVariable Long hotelId){
-        List<RoomDto> roomDtos = roomService.getAllRooms(hotelId);
-        return new ResponseEntity<>(roomDtos, HttpStatus.OK);
+        List<RoomDto> roomDto = roomService.getAllRooms(hotelId);
+        return new ResponseEntity<>(roomDto, HttpStatus.OK);
     }
 
     @GetMapping("/{roomId}")

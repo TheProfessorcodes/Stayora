@@ -4,6 +4,8 @@ import com.stayora.dto.HotelDto;
 import com.stayora.dto.HotelInfoDto;
 import com.stayora.entity.Hotel;
 
+import java.util.List;
+
 public interface HotelService {
     HotelDto createNewHotel(HotelDto hotelDto);
 
@@ -16,5 +18,7 @@ public interface HotelService {
     void activateHotelById(Long id);
 
     HotelInfoDto getHotelInfoById(Long hotelId);
+
+    List<HotelDto> getAllHotels();
 //void deactivateHotelById(Long id);
 }
