@@ -5,7 +5,7 @@ import com.stayora.dto.LoginDto;
 import com.stayora.dto.LoginResponseDto;
 import com.stayora.dto.SignUpRequestDto;
 import com.stayora.dto.UserDto;
-import com.stayora.entity.User;
+
 import com.stayora.security.AuthService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,7 +35,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginDto loginto, HttpServletResponse response, HttpServletRequest request) {
+    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginDto loginto, HttpServletResponse response) {
         String[] tokens = authService.login(loginto);
 
         Cookie cookie = new Cookie("refreshToken", tokens[1]);
