@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.stayora.util.AppUtils.getCurrentUser;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -94,5 +96,25 @@ public class RoomServiceImpl implements RoomService {
         inventoryService.deleteAllInventories(room);
 
         roomRepository.deleteById(roomId);
+    }
+
+    @Override
+    public RoomDto updateRoomById(Long hotelId, Long roomId, RoomDto roomDto) {
+        log.info("Updating a room with id {}",roomId);
+        Hotel hotel=hotelRepository
+                .findById(hotelId)
+                .orElseThrow(() -> new ResourceNotFoundException("Hotel with id "+hotelId+" not found"));
+        User user=getCurrentUser();
+        if(!user.equals(hotel.getOwner())){
+            throw new UnAuthorisedException("This user does not own this hotel");
+        }
+        Room room=roomRepository.findById(roomId)
+                .orElseThrow(() -> new ResourceNotFoundException("Room with id "+roomId+" not found"));
+        modelMapper.map(roomDto, room);
+        room.setId(roomId);
+        //TODO: IF PRICE OF THE INVENTORY IS UPDATED THEN UPDATE THE INVENTORY FOR THIS ROOM
+
+        room=roomRepository.save(room);
+        return modelMapper.map(room,RoomDto.class);
     }
 }

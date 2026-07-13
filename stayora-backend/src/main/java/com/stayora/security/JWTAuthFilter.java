@@ -36,11 +36,13 @@ public class JWTAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
             try {
                 final String requestTokenHeader = request.getHeader("Authorization");
-                if (requestTokenHeader == null && !requestTokenHeader.startsWith("Bearer ")) {
+
+                if (requestTokenHeader == null || !requestTokenHeader.startsWith("Bearer ")) {
                     filterChain.doFilter(request, response);
                     return;
                 }
-                String token = requestTokenHeader.split("Bearer")[1];
+
+                String token = requestTokenHeader.substring(7);
                 Long userId = jwtService.getUserIdFromToken(token);
                 if (userId != null && SecurityContextHolder.getContext().getAuthentication() == null) { //Meaning of this line security context is that the user is not currently logged in then only go inside it else no.
                     User user = userService.getUserById(userId);
