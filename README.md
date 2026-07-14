@@ -127,5 +127,5 @@ stripe.webhook.secret=YOUR_STRIPE_WEBHOOK_SECRET
 
 ## 🟢 Swagger OpenAPI definition
 
-* **Swagger UI Docs:** [http://localhost:8080/api/v1/swagger-ui/index.html/](http://localhost:8080/api/v1/swagger-ui/index.html/)
+* **Swagger UI Docs:** [http://localhost:8080/api/v1/swagger-ui/index.html#/](http://localhost:8080/api/v1/swagger-ui/index.html#/)
 * **Local Server Root:** [http://localhost:8080](http://localhost:8080)
