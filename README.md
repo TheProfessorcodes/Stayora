@@ -87,7 +87,7 @@ com.stayora
 ├── repository   # Data Access Layer extending Spring Data JPA repositories
 ├── security     # JWT Filters, Token Providers, and WebSecurityConfig
 ├── service      # Core Business Logic Layer (Decoupled Interfaces & Implementations)
-├──strategy      # Dynamic pricing calculations and surge factor engine
+├── strategy     # Dynamic pricing calculations and surge factor engine
 └── utils        # Fetches the current logged-in user from the Security Context Holder
 ```
 
