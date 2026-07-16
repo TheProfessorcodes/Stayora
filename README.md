@@ -55,15 +55,17 @@ To solve the classic **"Double-Booking"** problem inherent to high-traffic hospi
 
 ## 🛠️ Tech Stack
 
-![Java](https://img.shields.io/badge/Java-17-007396?style=flat-square)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4.4-4CAF50?style=flat-square)
-![Spring Security](https://img.shields.io/badge/Spring_Security-JWT-8BC34A?style=flat-square)
-![Spring Data JPA](https://img.shields.io/badge/Spring_Data_JPA-Data_Access-6DB33F?style=flat-square)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-008bb9?style=flat-square)
-![Hibernate](https://img.shields.io/badge/Hibernate-ORM-E67E22?style=flat-square)
-![Stripe](https://img.shields.io/badge/Stripe-Payments-800080?style=flat-square)
-![Swagger](https://img.shields.io/badge/Swagger-API_Docs-499D24?style=flat-square)
-![Maven](https://img.shields.io/badge/Maven-Build_Tool-C71585?style=flat-square)
+| Category | Technology | Purpose / Use Case |
+| :--- | :--- | :--- |
+| **Language** | ![Java](https://img.shields.io/badge/Java-17-007396?style=flat-square&logo=openjdk&logoColor=white) | <kbd><font color="#007396"><b>Core application logic</b></font></kbd> |
+| **Framework** | ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4.4-6DB33F?style=flat-square&logo=spring-boot&logoColor=white) | <kbd><font color="#6DB33F"><b>REST API development</b></font></kbd> |
+| **Security** | ![Spring Security](https://img.shields.io/badge/Spring_Security-JWT-6DB33F?style=flat-square&logo=spring-security&logoColor=white) | <kbd><font color="#00c853"><b>JWT authentication & safety</b></font></kbd> |
+| **Data Access** | ![Spring Data JPA](https://img.shields.io/badge/Spring_Data_JPA-Data_Access-6DB33F?style=flat-square&logo=spring&logoColor=white) | <kbd><font color="#33b5e5"><b>Database abstraction layer</b></font></kbd> |
+| **Database** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-4169E1?style=flat-square&logo=postgresql&logoColor=white) | <kbd><font color="#4169E1"><b>Relational data storage</b></font></kbd> |
+| **ORM** | ![Hibernate](https://img.shields.io/badge/Hibernate-ORM-59666C?style=flat-square&logo=hibernate&logoColor=white) | <kbd><font color="#ffbb33"><b>Java-to-SQL object mapping</b></font></kbd> |
+| **Payments** | ![Stripe](https://img.shields.io/badge/Stripe-Payments-008FDD?style=flat-square&logo=stripe&logoColor=white) | <kbd><font color="#aa66cc"><b>Payment processing</b></font></kbd> |
+| **API Docs** | ![Swagger](https://img.shields.io/badge/Swagger-API_Docs-85EA2D?style=flat-square&logo=swagger&logoColor=black) | <kbd><font color="#85EA2D"><b>Interactive API testing</b></font></kbd> |
+| **Build Tool** | ![Maven](https://img.shields.io/badge/Maven-Build_Tool-C71A36?style=flat-square&logo=apache-maven&logoColor=white) | <kbd><font color="#ff4444"><b>Dependency & build management</b></font></kbd> |
 
 ### 🧩 Architectural Patterns & Design Choices
 * **Strategy & Decorator Patterns:** Utilized to design the modular pricing workflow engine to dynamically manage holiday discounts and surge coefficients.
