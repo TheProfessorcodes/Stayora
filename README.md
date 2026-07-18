@@ -131,3 +131,10 @@ stripe.webhook.secret=YOUR_STRIPE_WEBHOOK_SECRET
 
 * **Swagger UI Docs:** [http://localhost:8080/api/v1/swagger-ui/index.html#/](http://localhost:8080/api/v1/swagger-ui/index.html#/)
 * **Local Server Root:** [http://localhost:8080](http://localhost:8080)
+
+
+## 👤 Author
+
+* **TheProfessorcodes (ARNAV SRIVASTAVA)** - *Initial Work & Architecture* - [GitHub Profile](https://github.com/TheProfessorcodes)
+
+Feel free to connect or reach out if you have any questions about the system architecture!
